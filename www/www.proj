@@ -55,6 +55,12 @@
     <Content Include="index.html" />
     <Content Include="css\index.css" />
     <Content Include="js\index.js" />
+    <Content Include="js\lib\knockout.mapping-latest.js"/>
+    <Content Include="js\RestProviders\StoresProvider.js"/>
+    <Content Include="js\ViewModels\ApplicationViewModel.js"/>
+    <Content Include="js\ViewModels\StoreViewModel.js"/>
+    <Content Include="js\ViewModels\UserBarViewModel.js"/>
+    <Content Include="js\ViewModels\VideoStoreViewModel.js"/>
     <Content Include="img\logo.png" />
     <Content Include="img\cordova.png" />
     <Content Include="cordova.ios.js">
