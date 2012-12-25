@@ -1,18 +1,27 @@
 ﻿var ApplicationViewModel = function () {
-    var userbarVM = new UserBarViewModel()
-    this.userBarViewModel = userbarVM;
+    /*Private variables*/
+    var self = this;
 
-    this.viewModelBackStack = ko.observableArray();
+    /*Public variables*/
+    self.userBarViewModel = new UserBarViewModel();
 
-    this.navigateTo = function (viewModel) {
-        this.viewModelBackStack.push(viewModel);
+    self.viewModelBackStack = ko.observableArray();
+
+    /*Public methods*/
+    self.navigateTo = function (viewModel) {
+        self.viewModelBackStack.push(viewModel);
     };
 
-    this.back = function () {
-        this.viewModelBackStack.pop();
+    self.backButtonRequired = ko.computed(function() {
+        return self.viewModelBackStack().length > 1;
+    }, self);
+
+    self.back = function () {
+        console.log("back executed");
+        selfviewModelBackStack.pop();
     };
 
-    this.templateSelector = function (viewModel) {
+    self.templateSelector = function (viewModel) {
         return viewModel.template;
     }
 };
