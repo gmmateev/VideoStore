@@ -7,18 +7,17 @@
 
     self.viewModelBackStack = ko.observableArray();
 
+    self.backButtonRequired = ko.computed(function () {
+        return self.viewModelBackStack().length > 1;
+    }, self);
+
     /*Public methods*/
     self.navigateTo = function (viewModel) {
         self.viewModelBackStack.push(viewModel);
     };
 
-    self.backButtonRequired = ko.computed(function() {
-        return self.viewModelBackStack().length > 1;
-    }, self);
-
     self.back = function () {
-        console.log("back executed");
-        selfviewModelBackStack.pop();
+        self.viewModelBackStack.pop();
     };
 
     self.templateSelector = function (viewModel) {

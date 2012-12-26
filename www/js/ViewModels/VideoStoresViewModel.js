@@ -18,8 +18,6 @@
     };
 
     this.showVideoStoreInfo = function (store) {
-        console.log("show video store info");
-
         var storeViewModel = new StoreViewModel(store);
         app.appViewModel.navigateTo(storeViewModel);
     };

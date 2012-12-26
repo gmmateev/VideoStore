@@ -27,11 +27,9 @@ var appMain = function () {
         self.appViewModel.backButtonRequired.subscribe(function (backButtonRequired) {
             if (backButtonRequired) {
                 document.addEventListener("backbutton", self.onBackButtonClicked, false);
-                console.log("Back button required");
             }
             else {
                 document.removeEventListener("backbutton", self.onBackButtonClicked, false);
-                console.log("back button no longer required");
             }
         });
 
@@ -40,7 +38,6 @@ var appMain = function () {
     };
 
     self.onBackButtonClicked = function () {
-        console.log("back button clicked");
         self.appViewModel.back();
     };
 };
