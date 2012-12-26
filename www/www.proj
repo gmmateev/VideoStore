@@ -56,8 +56,10 @@
     <Content Include="css\index.css" />
     <Content Include="js\index.js" />
     <Content Include="js\lib\knockout.mapping-latest.js" />
+    <Content Include="js\lib\sha1.js" />
     <Content Include="js\RestProviders\StoresProvider.js" />
     <Content Include="js\RestProviders\MoviesProvider.js" />
+    <Content Include="js\RestProviders\UsersProvider.js" />
     <Content Include="js\ViewModels\ApplicationViewModel.js" />
     <Content Include="js\ViewModels\StoreViewModel.js" />
     <Content Include="js\ViewModels\UserBarViewModel.js" />
