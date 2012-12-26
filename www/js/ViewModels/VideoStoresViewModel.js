@@ -8,16 +8,15 @@
     };
 
     /*Public variables*/
-    this.template = "videoStoresView";
-
-    this.allStores = ko.observableArray();
+    self.template = "videoStoresView";
+    self.allStores = ko.observableArray();
     
     /*Public methods*/
-    this.showAllStores = function () {
+    self.showAllStores = function () {
         StoresProvider.getAllStores(getAllStoresCallback);
     };
 
-    this.showVideoStoreInfo = function (store) {
+    self.showVideoStoreInfo = function (store) {
         var storeViewModel = new StoreViewModel(store);
         app.appViewModel.navigateTo(storeViewModel);
     };

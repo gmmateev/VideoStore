@@ -2,17 +2,21 @@
     /*Private variables*/
     var self = this;
 
-    /*Public variables*/
-    this.template = "storeInfoView";
-    this.storeInfo = ko.observable();
-
     /*Private methods*/
     var getStoreInfoCallback = function (responseData) {
         self.storeInfo(ko.mapping.fromJS(responseData));
     };
 
-    /*Initilize*/
-    StoresProvider.getStoreInfo(store.id, getStoreInfoCallback);
+    /*Public variables*/
+    self.template = "storeInfoView";
+    self.storeInfo = ko.observable();
 
-    
+    /*Public methods*/
+    self.showMovieInfo = function (movie) {
+        var movieViewModel = new MovieViewModel(movie);
+        app.appViewModel.navigateTo(movieViewModel);
+    };
+
+    /*Initilize*/
+    StoresProvider.getStoreInfo(store.id, getStoreInfoCallback);    
 };
