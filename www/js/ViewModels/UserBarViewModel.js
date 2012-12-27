@@ -4,8 +4,8 @@
 
     /*Private methods*/
     var registerCallback = function () {
+        app.appViewModel.ajaxRequestFinished("Registered");
         self.isSignedIn(true);
-        self.registerMessage("Registered");        
 
         if (self.rememberUser) {
             localStorage.setItem("username", self.username());
@@ -14,15 +14,14 @@
     };
 
     var registerErrorCallback = function (message) {
+        app.appViewModel.ajaxRequestFinished(message, true);
         self.isSignedIn(false);
         self.registerFailed(true);
-        self.registerMessage(message);
     };
 
     /*Public variables*/
     self.isSignedIn = ko.observable();
     self.registerFailed = ko.observable(false);
-    self.registerMessage = ko.observable();
 
     self.rememberUser = ko.observable(true);
 
@@ -35,6 +34,7 @@
         var authentication = self.username() + pass;
         var code = Sha1.hash(authentication);
         self.authenticationCode(code);
+        app.appViewModel.ajaxRequestStarted("Registering...");
         UsersProvider.register(self.username, code, registerCallback, registerErrorCallback);
     };
 

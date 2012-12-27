@@ -4,25 +4,27 @@
 
     /*Private methods*/
     var getMovieInfoCallback = function (responseData) {
+        app.appViewModel.ajaxRequestFinished();
         self.movieInfo(ko.mapping.fromJS(responseData));
     };
 
     var rentMovieCallback = function () {
+        app.appViewModel.ajaxRequestFinished("Rented");
         self.rented(true);
-        self.rentOperationsMessage("Rented");
     };
 
     var rentMovieErrorCallback = function (message) {
+        app.appViewModel.ajaxRequestFinished(message, true);
         self.rented(false);
-        self.rentOperationsMessage(message);
     };
 
-    var returnMovieCallback = function(){
+    var returnMovieCallback = function () {
+        app.appViewModel.ajaxRequestFinished("Returned");
         self.rented(false);
-        self.rentOperationsMessage("Returned");
     };
 
-    var returnMovieErrorCallback = function(message){
+    var returnMovieErrorCallback = function (message) {
+        app.appViewModel.ajaxRequestFinished(message, true);
         self.rentOperationsMessage(message);
     };
 
@@ -30,7 +32,6 @@
     self.template = "movieInfoView";
     self.movieInfo = ko.observable();
     self.rented = ko.observable();
-    self.rentOperationsMessage = ko.observable();
 
     /*Public methods*/
     self.rentMovie = function () {
@@ -40,10 +41,11 @@
         }
 
         if (app.appViewModel.userBarViewModel.isSignedIn()) {
+            app.appViewModel.ajaxRequestStarted("Renting movie...");
             MoviesProvider.rentMovie(movie.id(), user, rentMovieCallback, rentMovieErrorCallback);
         }
         else {
-            self.rentOperationsMessage("Sign in to rent the movie");
+            app.appViewModel.notify("Sign in to rent the movie");
         }
     };
 
@@ -54,13 +56,15 @@
         }
 
         if (app.appViewModel.userBarViewModel.isSignedIn()) {
+            app.appViewModel.ajaxRequestStarted("Returning movie...");
             MoviesProvider.returnMovie(movie.id(), user, returnMovieCallback, returnMovieErrorCallback);
         }
         else {
-            self.rentOperationsMessage("Sign in to return the movie");
+            app.appViewModel.notify("Sign in to return the movie");
         }
     };
 
     /*Initialize*/
+    app.appViewModel.ajaxRequestStarted("Retrieving movie info...");
     MoviesProvider.getMovieInfo(movie.id(), getMovieInfoCallback);
 };

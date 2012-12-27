@@ -4,6 +4,7 @@
 
     /*Private methods*/
     var getStoreInfoCallback = function (responseData) {
+        app.appViewModel.ajaxRequestFinished();
         self.storeInfo(ko.mapping.fromJS(responseData));
     };
 
@@ -18,5 +19,6 @@
     };   
 
     /*Initilize*/
+    app.appViewModel.ajaxRequestStarted("Retrieving store info...");
     StoresProvider.getStoreInfo(store.id, getStoreInfoCallback);    
 };

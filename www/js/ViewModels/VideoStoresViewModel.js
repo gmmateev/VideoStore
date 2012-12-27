@@ -5,17 +5,22 @@
     /*Private methods*/
     var getAllStoresCallback = function (responseData) {
         self.stores(responseData);
+        app.appViewModel.ajaxRequestFinished();
     };
 
     var getNearbyStoresCallback = function (responseData) {
+        app.appViewModel.ajaxRequestFinished();
         self.stores(responseData);
     };
 
     var getNearbyStoresErrorCallback = function (message) {
-        app.appViewModel.appNotification(message);
+        app.appViewModel.ajaxRequestFinished(message, true);
     };
 
     var getCurrentLocationCallback = function (position) {
+        app.appViewModel.ajaxRequestFinished();
+        app.appViewModel.ajaxRequestStarted("Retrieving stores...");
+
         StoresProvider.getNearbyStores(
             position.coords.latitude,
             position.coords.longitude,
@@ -25,7 +30,7 @@
     };
 
     var getCurrentLocationErrorCallback = function(message) {
-        app.appViewModel.appNotification(message);
+        app.appViewModel.ajaxRequestFinished(message, true);
     };
 
     /*Public variables*/
@@ -34,18 +39,18 @@
     
     /*Public methods*/
     self.showAllStores = function () {
+        app.appViewModel.ajaxRequestStarted("Retrieving stores...");
         StoresProvider.getAllStores(getAllStoresCallback);
     };
 
     self.showNearbyStores = function () {
-        navigator.geolocation.getCurrentPosition(getCurrentLocationCallback, getCurrentLocationErrorCallback);
-        
+        app.appViewModel.ajaxRequestStarted("Retrieving current location...");
+        navigator.geolocation.getCurrentPosition(getCurrentLocationCallback, getCurrentLocationErrorCallback);        
     };
 
     self.showVideoStoreInfo = function (store) {
         var storeViewModel = new StoreViewModel(store);
         app.appViewModel.navigateTo(storeViewModel);
-    };
-    
+    };    
 };
 
