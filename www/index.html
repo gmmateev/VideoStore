@@ -11,18 +11,24 @@
         
         <div id="userbar" data-bind="with: userBarViewModel">
             <ul class="clearfix">
-                <li data-bind="ifnot: isRegistered">
-                    <form>
+                <li data-bind="ifnot: isSignedIn">
+                    <button id="buttonSignIn" data-bind="click: signIn">Sign In</button>
+                    <button id="buttonRegister" data-bind="click: register">Register</button>
+                    <form id="formCredentials">
                         <input type="text" data-bind="value: username" placeholder="Username"/>
                         <input id="userPassword" type="password" placeholder="Password" />
-                        <button data-bind="click: register">Register</button>
+                        <label for="checkboxRememberMe">Remember me</label>
+                        <input type="checkbox" id="checkboxRememberMe" data-bind="checked: rememberUser"/>
                     </form>
                 </li>
-                <li data-bind="if: isRegistered">
+                <li data-bind="if: isSignedIn">
                     <p data-bind="text: username"/>
                 </li>
-                <li data-bind="if: registerAttempted">
+                <li>
                     <p data-bind="text: registerMessage"/>
+                </li>
+                <li data-bind="if: isSignedIn">
+                    <button data-bind="click: signOut">Sign Out</button>
                 </li>
             </ul>
         </div>
@@ -53,9 +59,14 @@
         <script type="text/x-jquery-tmpl" charset="utf-8" id="storeInfoView">
             <div data-bind="with: storeInfo">
                 <h1 data-bind="text: title" />
-                <div style="width: 100%;" data-bind="foreach: movies">
-                    <p style="width:100%" data-bind="click: $parents[1].showMovieInfo, text: title"/>
-                </div>
+                <ul style="width: 100%;" data-bind="foreach: movies">
+                    <li>
+                        <p style="width:100%" data-bind="click: $parents[1].showMovieInfo, text: title"/>
+                        <div data-bind="if: $root.userBarViewModel.isSignedIn">
+                            <button data-bind="click: $parents[1].rentMovie">Rent</button>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="movieInfoView">
