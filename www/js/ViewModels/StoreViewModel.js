@@ -15,10 +15,7 @@
     self.showMovieInfo = function (movie) {
         var movieViewModel = new MovieViewModel(movie);
         app.appViewModel.navigateTo(movieViewModel);
-    };
-
-    self.rentMovie = function (movie) {
-    };
+    };   
 
     /*Initilize*/
     StoresProvider.getStoreInfo(store.id, getStoreInfoCallback);    

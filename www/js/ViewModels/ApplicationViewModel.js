@@ -11,6 +11,8 @@
         return self.viewModelBackStack().length > 1;
     }, self);
 
+    self.appNotification = ko.observable();
+
     /*Public methods*/
     self.navigateTo = function (viewModel) {
         self.viewModelBackStack.push(viewModel);
