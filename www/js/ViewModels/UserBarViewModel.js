@@ -59,6 +59,10 @@
             localStorage.removeItem("username");
             localStorage.removeItem("authCode");
         }
+
+        interaction.collapseRegistrationBar(0);
+        /*Rebind the button after it is shown*/
+        interaction.bindExpandRegistrationButton();
     };
 
     /*Initialize*/

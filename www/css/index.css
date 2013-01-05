@@ -6,13 +6,7 @@
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
 }
 
-.clearfix:after{
-    content: ".";
-    display: block;
-    line-height: 0;
-    clear: both;
-    visibility: hidden;
-}
+
 
 body {
     background-color:#E4E4E4;
@@ -31,7 +25,73 @@ body {
     font-size:15px;
     height:100%;
     margin:0px;
+    padding: 0;
     width:100%;
+}
+
+.clearfix:after{
+    content: ".";
+    display: block;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+h1 {
+    font-size: 21px;
+    margin: 3px;
+    padding: 0;
+    font-weight:normal;
+    margin:10px;
+}
+
+h2 {
+    font-size: 19px;
+    margin: 3px;
+    padding: 0;
+    font-weight:normal;
+    margin:10px;
+}
+
+h3 {
+    font-size: 17px;
+    margin: 3px;
+    padding: 0;
+    font-weight:lighter;
+    margin:5px;
+}
+
+button {
+    height:30px;
+    width:45%;
+    min-width:150px;
+    margin:3px auto 3px auto;
+    display:inline;
+}
+
+input.text-field {
+    height:30px;
+    width:45%;
+    min-width:120px;
+    margin:3px auto 3px auto;
+    padding:0;
+    border: 0;
+}
+
+label {
+    width:45%;
+    min-width:120px;
+    margin:3px auto 3px auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+}
+
+#video-stores {
+    text-align:center;
 }
 
 /* Portrait layout (default) */
@@ -41,32 +101,54 @@ body {
     opacity: 0.8;
     color: white;
 }
-#userbar ul{
-    list-style-type: none;
-    margin: 0;
+#userbar ul{    
     padding: 5px;
+    margin: 0 auto;
+    width:100%;
 }
 #userbar ul li{
     float: left;
-    display: inline;
 }
 #userbar ul li p{
     margin: 5px;
 }
 
+#registration-bar {
+    display:none;
+}
+
 #app {
-    text-align:center;
     width:100%;
     height:100%;
 }
 #app>div
 {
-  display: none;
+    display: none;
 }
 #app>*:last-child
 {
-  display: block;
+    display: block;
 }
+
+ul.items-list {
+    width: 100%;
+    text-align:left;
+}
+
+ul.items-list li {
+    margin: 10px;
+    width: 100%;
+}
+
+#store-info h3 {
+    float: left;
+}
+
+#store-info p{
+    margin: 3px 20px;
+    float:right;
+}
+
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {

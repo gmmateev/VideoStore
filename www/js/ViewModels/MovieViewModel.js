@@ -46,7 +46,10 @@
         }
         else {
             app.appViewModel.notify("Sign in to rent the movie");
+            interaction.expandRegistrationBar();
         }
+
+        return false;
     };
 
     self.returnMovie = function () {
@@ -61,7 +64,10 @@
         }
         else {
             app.appViewModel.notify("Sign in to return the movie");
+            interaction.expandRegistrationBar();
         }
+
+        return false;
     };
 
     /*Initialize*/

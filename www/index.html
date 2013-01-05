@@ -7,19 +7,21 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Video Store</title>        
     </head>
-    <body>
-        
+    <body>        
         <div id="userbar" data-bind="with: userBarViewModel">
             <ul class="clearfix">
                 <li data-bind="ifnot: isSignedIn">
-                    <button id="buttonSignIn" data-bind="click: signIn">Sign In</button>
-                    <button id="buttonRegister" data-bind="click: register">Register</button>
-                    <form id="formCredentials">
-                        <input type="text" data-bind="value: username" placeholder="Username"/>
-                        <input id="userPassword" type="password" placeholder="Password" />
+                    <button id="buttonExpandRegistration">Sign in or Register</button>
+                </li>
+                <li id="registration-bar" data-bind="ifnot: isSignedIn">                    
+                    <form id="formCredentials">                        
+                        <input class="text-field" type="text" data-bind="value: username" placeholder="Username"/>
+                        <input class="text-field" id="userPassword" type="password" placeholder="Password"/>
+                        <button id="buttonSignIn" data-bind="click: signIn">Sign In</button>
+                        <button id="buttonRegister" data-bind="click: register">Register</button>
                         <label for="checkboxRememberMe">Remember me</label>
                         <input type="checkbox" id="checkboxRememberMe" data-bind="checked: rememberUser"/>
-                    </form>
+                    </form>                    
                 </li>
                 <li data-bind="if: isSignedIn">
                     <p data-bind="text: username"/>
@@ -36,10 +38,10 @@
             <p data-bind="text: appNotification" />
         </div>
         
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.js" type="text/javascript"></script>
-        <script src="js/lib/knockout.mapping-latest.js" type="text/javascript"></script>
-        <script src="js/lib/sha1.js" type="text/javascript"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.js"></script>
+        <script type="text/javascript" src="js/lib/knockout.mapping-latest.js"></script>
+        <script type="text/javascript" src="js/lib/sha1.js"></script>
         <script type="text/javascript" src="cordova-2.2.0.js"></script>
         <script type="text/javascript" src="js/RestProviders/StoresProvider.js"></script>
         <script type="text/javascript" src="js/RestProviders/MoviesProvider.js"></script>
@@ -50,20 +52,26 @@
         <script type="text/javascript" src="js/ViewModels/MovieViewModel.js"></script>
         <script type="text/javascript" src="js/ViewModels/UserBarViewModel.js"></script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="videoStoresView">
-            <div>
+            <div id="video-stores">
+                <h1>Video Stores App</h1>
                 <button data-bind="click: showAllStores">Show all stores</button>
                 <button data-bind="click: showNearbyStores">Show nearby stores</button>
-                <div style="width: 100%;" data-bind="foreach: stores">
-                    <p style="width:100%" data-bind="click: $parent.showVideoStoreInfo, text: title"/>
-                </div>
+                <h2 data-bind="text: displayedItemsTitle" />
+                <ul class="items-list" data-bind="foreach: stores">
+                    <li>
+                        <h3 data-bind="click: $parent.showVideoStoreInfo, text: title"/>
+                    </li>
+                </ul>
             </div>
         </script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="storeInfoView">
-            <div data-bind="with: storeInfo">
+            <div data-bind="with: storeInfo" id="store-info">
                 <h1 data-bind="text: title" />
-                <ul style="width: 100%;" data-bind="foreach: movies">
-                    <li>
-                        <p style="width:100%" data-bind="click: $parents[1].showMovieInfo, text: title"/>
+                <h2>Movies</h2>
+                <ul class="items-list" data-bind="foreach: movies">
+                    <li data-bind="click: $parents[1].showMovieInfo" class="clearfix">
+                        <h3 data-bind="text: title"/>
+                        <p>Published: <label data-bind="text: $parents[1].parseDate(publishDate)"/></p>
                     </li>
                 </ul>
             </div>
@@ -72,27 +80,31 @@
             <div data-bind="with: movieInfo">
                 <h1 data-bind="text: title"/>
                 <div>
-                    <button data-bind="click: $parent.rentMovie">Rent</button>
+                    <button data-bind="click: $parent.rentMovie, clickBubble: false">Rent</button>
                 </div>
                 <div>                    
-                    <button data-bind="click: $parent.returnMovie">Return</button>
+                    <button data-bind="click: $parent.returnMovie, clickBubble: false">Return</button>
                 </div>
                 <p data-bind="text: description"/>
-                <ul data-bind="foreach: categories">
-                    <li data-bind="text: name"/>
+                <ul class="items-list" data-bind="foreach: categories">
+                    <li>
+                        <h3 data-bind="text: name" />
+                    </li>
                 </ul>
             </div>
         </script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/interaction.js"></script>
         <script type="text/javascript">
             var app;
+            var interaction;
             $(document).ready(function () {
-                console.log("document ready");
-
                 $.support.cors = true;
 
                 app = new appMain();
                 app.initialize();
+
+                interaction = new interaction();
             });                        
         </script>
     </body>

@@ -55,6 +55,7 @@
     <Content Include="index.html" />
     <Content Include="css\index.css" />
     <Content Include="js\index.js" />
+    <Content Include="js\interaction.js" />
     <Content Include="js\lib\knockout.mapping-latest.js" />
     <Content Include="js\lib\sha1.js" />
     <Content Include="js\RestProviders\StoresProvider.js" />

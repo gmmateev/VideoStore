@@ -36,16 +36,19 @@
     /*Public variables*/
     self.template = "videoStoresView";
     self.stores = ko.observableArray();
+    self.displayedItemsTitle = ko.observable();
     
     /*Public methods*/
     self.showAllStores = function () {
         app.appViewModel.ajaxRequestStarted("Retrieving stores...");
         StoresProvider.getAllStores(getAllStoresCallback);
+        self.displayedItemsTitle("All stores");
     };
 
     self.showNearbyStores = function () {
         app.appViewModel.ajaxRequestStarted("Retrieving current location...");
-        navigator.geolocation.getCurrentPosition(getCurrentLocationCallback, getCurrentLocationErrorCallback);        
+        navigator.geolocation.getCurrentPosition(getCurrentLocationCallback, getCurrentLocationErrorCallback);
+        self.displayedItemsTitle("Nearby stores");
     };
 
     self.showVideoStoreInfo = function (store) {

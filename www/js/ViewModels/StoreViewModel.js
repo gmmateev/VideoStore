@@ -16,7 +16,12 @@
     self.showMovieInfo = function (movie) {
         var movieViewModel = new MovieViewModel(movie);
         app.appViewModel.navigateTo(movieViewModel);
-    };   
+    };
+
+    self.parseDate = function (dateStr) {
+        var date = dateStr().substring(0, 4);
+        return date;
+    };
 
     /*Initilize*/
     app.appViewModel.ajaxRequestStarted("Retrieving store info...");
