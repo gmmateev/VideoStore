@@ -64,7 +64,7 @@
     <Content Include="js\ViewModels\ApplicationViewModel.js" />
     <Content Include="js\ViewModels\StoreViewModel.js" />
     <Content Include="js\ViewModels\UserBarViewModel.js" />
-    <Content Include="js\ViewModels\VideoStoreViewModel.js" />
+    <Content Include="js\ViewModels\VideoStoresViewModel.js" />
     <Content Include="js\ViewModels\MovieViewModel.js" />
     <Content Include="img\logo.png" />
     <Content Include="img\cordova.png" />
