@@ -23,11 +23,11 @@
                         <input type="checkbox" id="checkboxRememberMe" data-bind="checked: rememberUser"/>
                     </form>                    
                 </li>
-                <li data-bind="if: isSignedIn">
+                <li class="inlined" data-bind="if: isSignedIn">
                     <p data-bind="text: username"/>
                 </li>                
-                <li data-bind="if: isSignedIn">
-                    <button data-bind="click: signOut">Sign Out</button>
+                <li class="inlined" data-bind="if: isSignedIn">
+                    <button data-bind="click: signOut" id="signOutButton">Sign Out</button>
                 </li>
             </ul>
         </div>
@@ -38,9 +38,9 @@
             <p data-bind="text: appNotification" />
         </div>
         
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.0.js"></script>
-        <script type="text/javascript" src="js/lib/knockout.mapping-latest.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="js/lib/knockout.js"></script>
+        <script type="text/javascript" src="js/lib/knockout.mapping.js"></script>
         <script type="text/javascript" src="js/lib/sha1.js"></script>
         <script type="text/javascript" src="cordova-2.2.0.js"></script>
         <script type="text/javascript" src="js/RestProviders/StoresProvider.js"></script>
