@@ -15,7 +15,6 @@
 
     var rentMovieErrorCallback = function (message) {
         app.appViewModel.ajaxRequestFinished(message, true);
-        self.rented(false);
     };
 
     var returnMovieCallback = function () {
@@ -25,7 +24,6 @@
 
     var returnMovieErrorCallback = function (message) {
         app.appViewModel.ajaxRequestFinished(message, true);
-        self.rentOperationsMessage(message);
     };
 
     /*Public variables*/
