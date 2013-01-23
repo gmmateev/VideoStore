@@ -1,16 +1,28 @@
 ﻿var UsersProvider = function () { };
 
-UsersProvider.register = function (username, authCode, callback, errorCallback){
+UsersProvider.register = function (username, authCode, callback, errorCallback) {
+    var data = {
+        username: username,
+        authCode: authCode
+    };
+
     $.ajax({
         url: "http://videostores.apphb.com/api/stores/register-user",
         dataType: "json",
         type: "POST",
-        data: { username: username, authCode: authCode },
-        success: function (data) {
+        data: data,
+        success: function () {
             callback();
         },
         error: function (data) {
-            var message = JSON.parse(data.responseText).Message;
+            var message;
+            if (data.responseText != "") {
+                message = JSON.parse(data.responseText).Message;
+            }
+            else {
+                message = "Failed to register user";
+            }
+
             errorCallback(message);
         }
     });

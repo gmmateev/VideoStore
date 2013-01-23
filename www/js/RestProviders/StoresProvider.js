@@ -24,7 +24,13 @@ StoresProvider.getNearbyStores = function (latitude, longitude, count, callback,
             callback(data);
         },
         error: function (data) {
-            var message = JSON.parse(data.responseText).Message;
+            var message;
+            if (data.responseText != "") {
+                message = JSON.parse(data.responseText).Message;
+            }
+            else {
+                message = "Failed to get nearby stores";
+            }
             errorCallback(message);
         }
     });

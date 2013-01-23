@@ -24,7 +24,14 @@ MoviesProvider.rentMovie = function (movieId, user, callback, errorCallback) {
             callback();
         },
         error: function (data) {
-            errorCallback(JSON.parse(data.responseText).Message);
+            var message;
+            if (data.responseText != "") {
+                message = JSON.parse(data.responseText).Message;
+            }
+            else {
+                message = "Failed to rent the movie";
+            }
+            errorCallback(message);
         }
     });
 };
@@ -42,7 +49,14 @@ MoviesProvider.returnMovie = function (movieId, user, callback, errorCallback) {
             callback();
         },
         error: function (data) {
-            errorCallback(JSON.parse(data.responseText).Message);
+            var message;
+            if (data.responseText != "") {
+                message = JSON.parse(data.responseText).Message;
+            }
+            else {
+                message = "Failed to return the movie";
+            }
+            errorCallback(message);
         }
     });
 };

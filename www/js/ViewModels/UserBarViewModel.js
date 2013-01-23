@@ -35,7 +35,7 @@
         var code = Sha1.hash(authentication);
         self.authenticationCode(code);
         app.appViewModel.ajaxRequestStarted("Registering...");
-        UsersProvider.register(self.username, code, registerCallback, registerErrorCallback);
+        UsersProvider.register(self.username(), code, registerCallback, registerErrorCallback);
     };
 
     self.signIn = function () {
