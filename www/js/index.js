@@ -22,15 +22,16 @@ var appMain = function () {
     self.onDeviceReady = function () {
         self.appViewModel = new ApplicationViewModel();
         ko.applyBindings(self.appViewModel);
+        
+        document.addEventListener("pause", self.onPause, false);
+        document.addEventListener("resume", self.onResume, false);
 
         //handle the back button
         self.appViewModel.backButtonRequired.subscribe(function (backButtonRequired) {
             if (backButtonRequired) {
-                console.log("Back button required and event attached");
                 document.addEventListener("backbutton", self.onBackButtonClicked, false);
             }
             else {
-                console.log("back button not required, event handler removed");
                 document.removeEventListener("backbutton", self.onBackButtonClicked, false);
             }
         });
@@ -40,7 +41,12 @@ var appMain = function () {
     };
 
     self.onBackButtonClicked = function () {
-        console.log("back button clicked");
         self.appViewModel.back();
     };
+    
+    self.onResume = function () {
+    };
+    
+    self.onPause = function (){
+    }
 };
