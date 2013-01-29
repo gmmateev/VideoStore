@@ -64,6 +64,7 @@
     <Content Include="js\RestProviders\MoviesProvider.js" />
     <Content Include="js\RestProviders\UsersProvider.js" />
     <Content Include="js\ViewModels\ApplicationViewModel.js" />
+    <Content Include="js\ViewModels\HomeViewModel.js" />
     <Content Include="js\ViewModels\StoreViewModel.js" />
     <Content Include="js\ViewModels\UserBarViewModel.js" />
     <Content Include="js\ViewModels\VideoStoresViewModel.js" />

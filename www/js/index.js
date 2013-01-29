@@ -36,8 +36,8 @@ var appMain = function () {
             }
         });
 
-        var firstPage = new VideoStoresViewModel();
-        self.appViewModel.navigateTo(firstPage);
+        var home = new HomeViewModel();
+        self.appViewModel.navigateTo(home);
     };
 
     self.onBackButtonClicked = function () {

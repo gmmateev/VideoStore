@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -48,16 +48,23 @@
         <script type="text/javascript" src="js/RestProviders/MoviesProvider.js"></script>
         <script type="text/javascript" src="js/RestProviders/UsersProvider.js"></script>
         <script type="text/javascript" src="js/ViewModels/ApplicationViewModel.js"></script>
+        <script type="text/javascript" src="js/ViewModels/HomeViewModel.js"></script>
         <script type="text/javascript" src="js/ViewModels/VideoStoresViewModel.js"></script>
         <script type="text/javascript" src="js/ViewModels/StoreViewModel.js"></script>
         <script type="text/javascript" src="js/ViewModels/MovieViewModel.js"></script>
         <script type="text/javascript" src="js/ViewModels/UserBarViewModel.js"></script>
-        <script type="text/x-jquery-tmpl" charset="utf-8" id="videoStoresView">
-            <div id="video-stores">
+        <script type="text/x-jquery-tmpl" charset="utf-8" id="homeView">
+            <div id="home-view">
                 <h1>Video Stores App</h1>
                 <button data-bind="click: showAllStores">Show all stores</button>
+                <button data-bind="click: showNearbyStores">Show nearby stores</button>                
+            </div>
+        </script>
+        <script type="text/x-jquery-tmpl" charset="utf-8" id="videoStoresView">
+            <div id="video-stores">
+                <button data-bind="click: showAllStores">Show all stores</button>
                 <button data-bind="click: showNearbyStores">Show nearby stores</button>
-                <h2 data-bind="text: displayedItemsTitle" />
+                <h1 data-bind="text: displayedItemsTitle" />
                 <ul class="items-list" data-bind="foreach: stores">
                     <li>
                         <h3 data-bind="click: $parent.showVideoStoreInfo, text: title"/>

@@ -1,4 +1,4 @@
-﻿var VideoStoresViewModel = function () {
+﻿var VideoStoresViewModel = function (viewMode) {
     /*Private variables*/
     var self = this;
 
@@ -37,6 +37,7 @@
     self.template = "videoStoresView";
     self.stores = ko.observableArray();
     self.displayedItemsTitle = ko.observable();
+    self.viewMode = ko.observable(viewMode);
     
     /*Public methods*/
     self.showAllStores = function () {
@@ -54,6 +55,14 @@
     self.showVideoStoreInfo = function (store) {
         var storeViewModel = new StoreViewModel(store);
         app.appViewModel.navigateTo(storeViewModel);
-    };    
+    };
+
+    /*Initialize*/
+    if (self.viewMode() == "all") {
+        self.showAllStores();
+    }
+    if (self.viewMode() == "nearby") {
+        self.showNearbyStores();
+    }
 };
 
