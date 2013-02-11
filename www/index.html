@@ -66,8 +66,8 @@
                 <button data-bind="click: showNearbyStores">Show nearby stores</button>
                 <h1 data-bind="text: displayedItemsTitle" />
                 <ul class="items-list" data-bind="foreach: stores">
-                    <li>
-                        <h3 data-bind="click: $parent.showVideoStoreInfo, text: title"/>
+                    <li data-bind="click: $parent.showVideoStoreInfo">
+                        <h3 data-bind="text: title"/>
                     </li>
                 </ul>
             </div>
