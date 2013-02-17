@@ -14,7 +14,6 @@ var appMain = function () {
             self.onDeviceReady();
         }
     };
-
     /*Public variables*/
     self.appViewModel;
 
@@ -25,7 +24,7 @@ var appMain = function () {
         
         document.addEventListener("pause", self.onPause, false);
         document.addEventListener("resume", self.onResume, false);
-
+        
         //handle the back button
         self.appViewModel.backButtonRequired.subscribe(function (backButtonRequired) {
             if (backButtonRequired) {
@@ -41,7 +40,14 @@ var appMain = function () {
     };
 
     self.onBackButtonClicked = function () {
-        self.appViewModel.back();
+        if(interaction.isRegistrationBarExpanded())
+        {
+            interaction.collapseRegistrationBar(500);
+        }
+        else
+        {
+            self.appViewModel.back();
+        }
     };
     
     self.onResume = function () {

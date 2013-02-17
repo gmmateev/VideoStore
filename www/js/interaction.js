@@ -1,4 +1,4 @@
-﻿var interaction = function () {
+var interaction = function () {
     /*Private methods*/
     var self = this;
 
@@ -17,6 +17,10 @@
         $("#buttonExpandRegistration").on("click", function (event) {
             self.expandRegistrationBar(500);
         });
+    };
+    
+    self.isRegistrationBarExpanded = function () {
+        return $("#registration-bar").css("display") != "none";
     };
 
     /*Initialize*/

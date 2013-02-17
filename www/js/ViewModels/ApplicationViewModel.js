@@ -1,4 +1,4 @@
-﻿var ApplicationViewModel = function () {
+var ApplicationViewModel = function () {
     /*Private variables*/
     var self = this;
     var startedAjaxRequestsCount = ko.observable(0);

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -54,17 +54,20 @@
         <script type="text/javascript" src="js/ViewModels/MovieViewModel.js"></script>
         <script type="text/javascript" src="js/ViewModels/UserBarViewModel.js"></script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="homeView">
-            <div id="home-view">
+            <div id="home-view" class="template">
                 <h1>Video Stores App</h1>
+                    
                 <button data-bind="click: showAllStores">Show all stores</button>
                 <button data-bind="click: showNearbyStores">Show nearby stores</button>                
             </div>
         </script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="videoStoresView">
-            <div id="video-stores">
+            <div id="video-stores" class="template">
+                <h1 data-bind="text: displayedItemsTitle" />
+            
                 <button data-bind="click: showAllStores">Show all stores</button>
                 <button data-bind="click: showNearbyStores">Show nearby stores</button>
-                <h1 data-bind="text: displayedItemsTitle" />
+                
                 <ul class="items-list" data-bind="foreach: stores">
                     <li data-bind="click: $parent.showVideoStoreInfo">
                         <h3 data-bind="text: title"/>
@@ -73,7 +76,7 @@
             </div>
         </script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="storeInfoView">
-            <div data-bind="with: storeInfo" id="store-info">
+            <div data-bind="with: storeInfo" id="store-info" class="template">
                 <h1 data-bind="text: title" />
                 <h2>Movies</h2>
                 <ul class="items-list" data-bind="foreach: movies">
@@ -85,7 +88,7 @@
             </div>
         </script>
         <script type="text/x-jquery-tmpl" charset="utf-8" id="movieInfoView">
-            <div data-bind="with: movieInfo">
+            <div data-bind="with: movieInfo" class="template">
                 <h1 data-bind="text: title"/>
                 <div>
                     <button data-bind="click: $parent.rentMovie, clickBubble: false">Rent</button>
@@ -109,10 +112,10 @@
             $(document).ready(function () {
                 $.support.cors = true;
 
-                app = new appMain();
-                app.initialize();
-
                 interaction = new interaction();
+                
+                app = new appMain();
+                app.initialize();                
             });                        
         </script>
     </body>
