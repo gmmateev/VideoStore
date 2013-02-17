@@ -103,7 +103,6 @@ div.template {
 #userbar{
     width: 100%;
     background-color:black;
-    opacity: 0.8;
     color: white;
     text-align:center;
     position: fixed;
@@ -142,13 +141,13 @@ div.template {
     width:100%;
     height:100%;
 }
-
-#app>div {
-     display:none;
+#app>div
+{
+    display: none;
 }
-
-#app>div:last-child {
-    display:block;
+#app>*:last-child
+{
+    display: block;
 }
 
 ul.items-list {
